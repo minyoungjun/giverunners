@@ -121,8 +121,34 @@
     </div>
   </div>
 
+ <div class="light-wrapper">
+    <div class="container inner">
+      <h3 class="section-title pull-left">Sports Chariting Group Recent Postings</h3>
+      <a href="http://www.facebook.com/groups/sportscharitydream" class="link-out pull-right"><i class="icon-s-facebook rp5"></i>Go to Giverunner Facebook Group</a>
+      <div class="clearfix"></div>
+      <div class="latest-blog-wrapper">
+        <div class="latest-blog isotope isotope js-isotope row" data-isotope-options='{ "layoutMode": "fitRows", "itemSelector": ".post" }'>
 
-  <div class="light-wrapper">
+          <%0.upto(3) do |x|%>
+            <div class="post col-sm-12 col-md-6 row">
+              <div class="col-sm-4">
+                <figure class="icon-overlay"><a href="<%=@fb_link[x]%>"><img src="<%if @fb_thumb[x] != nil%><%=@fb_thumb[x]%><%else%>/images/logo_thumb.png<%end%>" alt="" /></a></figure>
+              </div>
+              <div class="col-sm-8 post-content">
+                <h3 class="post-title"><a href="https://www.facebook.com/<%=@fb_name[x]["id"]%>"><%=@fb_name[x]["name"]%></a></h3>
+                <div class="meta"><span class="date"><%=@fb_time[x]%></span> <span class="comments"><a href="#"><%=@fb_comments[x]%> Comments</a></span></div>
+                <p><%if @fb_text[x].length > 80 %><%=@fb_text[x][0..79]%>...<%else%><%=@fb_text[x]%><%end%></p>
+              </div>
+            </div>
+          <%end%>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dark-wrapper">
     <div class="container inner">
       <h3 class="section-title">What We Do</h3>
       <div class="services-1">
