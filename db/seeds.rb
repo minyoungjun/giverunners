@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+gtoken = Grouptoken.new
+gtoken.token = "CAAJRcCnqPSgBAAZB5VLFEkwReasFBIXoYrz2tCtamiZAUZClsRxszDC6eFpS4D8bWeZCmIaksnbPo8l1AXvc8iySKVEZBLsGQVWnMRZAWQCHnZBuZBZCA6amqEtXcejAvi01J0wAuAr3T4UmHFwsTI2Ul6RXMVXc1TqDC2KkUK3CJMgXfJ4nJATEn8pEusxXSosdQDQvZB1yvMrsgSn2Rqz8kC"
+gtoken.save
