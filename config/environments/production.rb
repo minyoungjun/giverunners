@@ -1,6 +1,22 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  # General Settings
 
+  config.app_domain = 'giverunner.com'
+
+  # Email
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: config.app_domain }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.mailgun.org', 
+    port: '587',
+    enable_starttls_auto: true,
+    user_name: 'postmaster@giverunner.com',
+    password: 'cf72bdfdf86586c3e716ef686ad6b041',
+    authentication: :plain,
+    domain: 'giverunner.com'
+  }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
