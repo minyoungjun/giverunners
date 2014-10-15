@@ -1,0 +1,60 @@
+  <div class="offset2"></div>
+  <div class="light-wrapper">
+    <div class="container inner">
+      <h3 class="section-title">Meet the Team</h3>
+      <div class="row team">
+        <%User.all.each do |user|%>
+          <div class="col-sm-4">
+            <figure class="icon-overlay"><img src="https://graph.facebook.com/v2.1/<%=user.identities.first.uid%>/picture?type=large" alt="" style=" border-radius: 50%; margin:0 auto;" /></figure>
+            <div class="post-content text-center">
+              <h3 class="post-title"><%=user.name%> <span class="meta"><%=user.nickname%></span></h3>
+              <p><%=user.story%></p>
+              <ul class="social">
+                <li><a href="https://www.facebook.com/<%=user.identities.first.uid%>"><i class="icon-s-facebook"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        <%end%>
+
+
+      </div>
+    </div>
+  </div>
+  <!-- /.light-wrapper -->
+  
+  <div class="parallax parallax1 customers">
+    <div class="container inner text-center">
+      <h3 class="section-title text-center">What Do Our Customers Think</h3>
+      <div class="testimonials owl-carousel thin">
+        <div class="item">
+          <blockquote>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur. Nullam dolor nibh ultricies vehicula elit vulputate tristique egestas. Praesent commodo cursus magna, vel scelerisque.<small>Nikolas Brooten</small></p>
+          </blockquote>
+        </div>
+        <!-- /.item -->
+        <div class="item">
+          <blockquote>
+            <p>Cras justo odio, dapibus facilisis in, egestas eget quam. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient.<small>Coriss Ambady</small></p>
+          </blockquote>
+        </div>
+        <!-- /.item -->
+        <div class="item">
+          <blockquote>
+            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis id vestibulum. Donec sed odio dui. Sed posuere consectetur est at lobortis. Cras justo odio, dapibus ac facilisis in, egestas eget.<small>Barclay Widerski</small></p>
+          </blockquote>
+        </div>
+        <!-- /.item -->
+        <div class="item">
+          <blockquote>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet. Donec id elit non mi porta gravida at eget metus.<small>Elsie Spear</small></p>
+          </blockquote>
+        </div>
+        <!-- /.item --> 
+      </div>
+      <!-- /.testimonials --> 
+      
+    </div>
+    <!-- /.container --> 
+  </div>
+  <!-- /.parallax -->
+  
