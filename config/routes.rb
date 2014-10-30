@@ -9,6 +9,15 @@ Rails.application.routes.draw do
   get '/runnings/index'
   get '/runnings/member'
   get '/runnings/mypage'
+  get '/admin/new_cam'
+  post '/admin/create_campaign'
+  get '/admin/campaigns'
+  get '/admin' => "admin#campaigns"
+  get '/gives/campaigns'
+  get '/gives/create'
+  post '/gives/create_campaign'
+  get '/admin/authorize/:id' => "admin#authorize"
+  get '/admin/delete/:id' => "admin#delete"
   post '/update_profile' => "users#update_profile"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

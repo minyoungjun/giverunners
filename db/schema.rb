@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022175455) do
+ActiveRecord::Schema.define(version: 20141030052946) do
+
+  create_table "campaigns", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "category"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "content"
+    t.boolean  "authorized"
+    t.string   "facebook_url"
+    t.string   "site_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+  end
 
   create_table "donations", force: true do |t|
     t.integer  "user_id"
@@ -38,11 +56,6 @@ ActiveRecord::Schema.define(version: 20141022175455) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
-
-  create_table "models", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "photos", force: true do |t|
     t.datetime "created_at"

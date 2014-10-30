@@ -1,0 +1,41 @@
+
+  <div class="offset2"></div>
+  <div class="light-wrapper">
+    <div class="container inner">
+      <h3 class="section-title pull-left">연계된 후원 단체 소개</h3>
+      <a href="/gives/create" class="link-out pull-right"><i class="icon-upload-1"></i>Create new Campaign</a>
+
+      <div class="clearfix"></div>
+        <% campaign_number = 1%>
+        <% @campaigns.shuffle.each do |campaign|%>
+          <%if campaign_number%3 == 1%>
+            <div class="row team">
+          <%end%>
+          <div class="col-sm-4">
+            <a href="<%=campaign.site_url%>">
+              <figure class="icon-overlay">
+                <img src="<%=campaign.logo.url(:medium)%>" style="margin:0 auto;"/>
+              </figure>
+            </a>
+            <div class="post-content text-center">
+              <a href="<%=campaign.site_url%>">
+                <h3 class="post-title"><%=campaign.title%><span class="meta"><%=campaign.category%></span></h3>
+              </a>
+              <p><%=campaign.content%></p>
+              <ul class="social">
+                <li><a href="<%=campaign.facebook_url%>"><i class="icon-s-facebook"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <%if campaign_number%3 == 0%>
+            </div>
+            <div class="divide25"></div>
+          <%end%>
+          <% campaign_number = campaign_number + 1%>
+        <%end%>
+
+
+    </div>
+  </div>
+  <!-- /.light-wrapper -->
+  

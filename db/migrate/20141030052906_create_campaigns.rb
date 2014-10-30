@@ -4,6 +4,8 @@ class CreateCampaigns < ActiveRecord::Migration
       t.integer :user_id
       t.string  :title
       t.string  :category
+      t.string  :email
+      t.string  :phone
       t.text  :content
       t.boolean :authorized
       t.string  :facebook_url
