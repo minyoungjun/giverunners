@@ -1,62 +1,42 @@
   
   <div class="offset2"></div>
-  <div class="light-wrapper">
-    <div class="container inner tp40 bp0">
-      <div class="tp-banner-container">
-        <div class="tp-banner" >
-          <ul>
-            <li data-transition="fade" data-delay="9000"  data-saveperformance="on"  data-title="Ken Burns Slide"> <img src="images/dummy.png"  alt="" data-lazyload="/images/sh_big.jpg" data-bgposition="right top" data-kenburns="on" data-duration="12000" data-ease="Power0.easeInOut" data-bgfit="115" data-bgfitend="100" data-bgpositionend="center bottom">
-              <div class="caption sfr title light-layer" data-x="745" data-y="400" data-speed="700" data-start="2300" data-easing="Sine.easeOut">누구든지 참여할 수 있는 캠페인</div>
-              <div class="caption sfr lead light-layer" data-x="745" data-y="454" data-speed="700" data-start="2800" data-easing="Sine.easeOut">Giverunners Campaign will welcome every body</div>
-            </li>
-            <li data-transition="slidehorizontal" data-delay="7000" data-fstransition="fade" data-fsmasterspeed="1000" data-fsslotamount="7" data-saveperformance="off"  data-title="Video Slide"> <img src="/images/london.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">
-              <div class="tp-caption tp-fade fadeout fullscreenvideo"
-      data-x="0"
-      data-y="0"
-      data-speed="1000"
-      data-start="1100"
-      data-easing="Power4.easeOut"
-      data-elementdelay="0.01"
-      data-endelementdelay="0.1"
-      data-endspeed="1500"
-      data-endeasing="Power4.easeIn"
-      data-autoplay="true"
-      data-autoplayonlyfirsttime="false"
-      data-nextslideatend="true"
- data-volume="mute" data-forceCover="1" data-aspectratio="4:3" data-forcerewind="on" style="z-index: 2;">
-                <video class="" preload="none" width="100%" height="100%" poster="/images/london.jpg">
-                  <source src='/video/london.mp4' type='video/mp4' />
-                </video>
-              </div>
-              <div class="caption sfl title light-layer" data-x="45" data-y="400" data-speed="700" data-start="1500" data-easing="Sine.easeOut" style="z-index: 3;">어디서든 할 수 있는 시티 런</div>
-              <div class="caption sfl lead light-layer" data-x="45" data-y="454" data-speed="700" data-start="2000" data-easing="Sine.easeOut" style="z-index: 3;">City run everywhere</div>
-            </li>
-            <li data-transition="fade" data-delay="5000"> <img src="/images/banner.png" alt="" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
-              <div class="caption sfb title light-layer" data-x="center" data-y="250" data-speed="700" data-start="800" data-easing="Sine.easeOut" style="color:#a1cc08; background:white;">매주 화요일은 기부 러닝 데이!</div>
-              <div class="caption sfb lead light-layer" data-x="center" data-y="305" data-speed="700" data-start="1300" data-easing="Sine.easeOut"style="color:#a1cc08; background:white;">Tuesday is Give Running Day!</div>
-            </li>
-          </ul>
-          <div class="tp-bannertimer tp-bottom"></div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- /.light-wrapper -->
   <div class="light-wrapper">
     <div class="container inner">
       <h1 class="intro text-center">기부러너즈는 누구나 참여할 수 있는 캠페인입니다.</h1>
-      <p class="lead main text-center">우리는 스포츠와 기부를 연결하는 문화를 만들어갑니다</p>
+      <p class="lead main text-center">우리는 스포츠와 기부를 연결하는 문화를 만들어갑니다.</p>
       <h3 class="section-title text-center">Let's make something great together</h3>
-      <div class="text-center"> <a href="<%=user_omniauth_authorize_path(:facebook)%>" class="btn btn-large fixed-width">캠페인 참여</a> <a href="#" class="btn btn-large btn-maroon fixed-width">기부하기</a> </div>
+      <div class="text-center"/> <a href="<%=user_omniauth_authorize_path(:facebook)%>" class="btn btn-large fixed-width">캠페인 참여</a> <a href="#" onclick="javascript:alert('아직 기부하기 기능은 개발 중입니다. 주변에 있는 후원 단체에 기부해주시면 감사하겠습니다.');" class="btn btn-large btn-maroon fixed-width">기부하기</a> </div>
+      <div class="text-center" style="margin-top: 27px;">
+        <div class="fb-like" data-href="https://facebook.com/runningcamel" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+    </div>
 
     </div>
+
     <!-- /.container --> 
+ <div class="portfolio full-portfolio">
+      <div class="isotope items">
+
+        <%User.all.shuffle[0..19].each do |user|%>
+        <div class="item grid-sizer web" style="background:url('https://graph.facebook.com/v2.1/<%=user.identities.first.uid%>/picture?type=large');background-size: 100%;background-position: center; ">
+          <figure><a href="https://www.facebook.com/<%=user.identities.first.uid%>">
+            <div class="text-overlay">
+              <div class="info"><span><%=user.name%>(<%=user.hometown%>)-<%=user.pledge%></span></div>
+            </div>
+            <img src="/style/images/art/pm1.jpg" alt="" style="opacity: 0;filter: alpha(opacity=0); "/> </a></figure>
+        </div>
+      <%end%>
+
+
+      </div>
+    </div>
+
   </div>
   <!-- /.light-wrapper -->
 
   <div class="dark-wrapper">
     <div class="container inner">
-      <h3 class="section-title pull-left">Latest Instagram Shots about #giverunner</h3>
+      <h3 class="section-title pull-left">Latest Instagram Shots about #giverunner #giverunners #기부러너 #기부러너즈</h3>
       <a href="http://instagram.com/seunghunkim" class="link-out pull-right"><i class="icon-s-instagram rp5"></i>Go to Giverunner Instagram Page</a>
       <div class="clearfix"></div>
       <div class="owl-gallery">
@@ -100,82 +80,6 @@
     </div>
   </div>
 
-  <div class="dark-wrapper">
-    <div class="container inner">
-      <h3 class="section-title">What We Do</h3>
-      <div class="services-1">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="icon"> <i class="budicon-location-1 icn"></i> </div>
-            <!-- /.icon -->
-            <div class="text">
-              <h3>기부 러닝</h3>
-              <p>매주 화요일 함께하는 기부 러닝</p>
-            </div>
-            <!-- /.text --> 
-          </div>
-          <!-- /.col-sm-4 -->
-          <div class="col-sm-4">
-            <div class="icon"> <i class="budicon-gender-female icn"></i> </div>
-            <!-- /.icon -->
-            <div class="text">
-              <h3>Birth Photography</h3>
-              <p>Vestibulum id ligula porta euismod semper. Aenean lacinia bibendum vestibulum. Cum sociis natoque penatibus et parturient.</p>
-            </div>
-            <!-- /.text --> 
-          </div>
-          <!-- /.col-sm-4 -->
-          <div class="col-sm-4">
-            <div class="icon"> <i class="budicon-meal icn"></i> </div>
-            <!-- /.icon -->
-            <div class="text">
-              <h3>Food Photography</h3>
-              <p>Aenean eu leo quam. Pellente ornare sem lacinia quam venenatis vestibulum sagittis montes, nascetur ridiculus mus.</p>
-            </div>
-            <!-- /.text --> 
-          </div>
-          <!-- /.col-sm-4 --> 
-        </div>
-        <!-- /.row -->
-        <div class="divide30"></div>
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="icon"> <i class="budicon-bag icn"></i> </div>
-            <!-- /.icon -->
-            <div class="text">
-              <h3>Fashion Photography</h3>
-              <p>Fusce dapibus commodo, tortor mauris condimentum nibh, ut fermentum massa. Maecenas sed diam eget risus varius blandit.</p>
-            </div>
-            <!-- /.text --> 
-          </div>
-          <!-- /.col-sm-4 -->
-          <div class="col-sm-4">
-            <div class="icon"> <i class="budicon-diamond icn"></i> </div>
-            <!-- /.icon -->
-            <div class="text">
-              <h3>Jewelery Photography</h3>
-              <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Vestibulum id ligula porta felis sit amet non magna sit amet tortor sagittis.</p>
-            </div>
-            <!-- /.text --> 
-          </div>
-          <!-- /.col-sm-4 -->
-          <div class="col-sm-4">
-            <div class="icon"> <i class="budicon-cocktail icn"></i> </div>
-            <!-- /.icon -->
-            <div class="text">
-              <h3>Drink Photography</h3>
-              <p>Morbi leo risus, porta ac consectetur ac at eros. Cras mattis consectetur purus. Cras mattis consectetur purus fermentum.</p>
-            </div>
-            <!-- /.text --> 
-          </div>
-          <!-- /.col-sm-4 --> 
-        </div>
-        <!-- /.row --> 
-      </div>
-      <!-- /.services --> 
-      
-    </div>
-  </div>
   <div class="parallax parallax1 customers">
     <div class="container inner text-center">
       <h3 class="section-title text-center">What Do We Think</h3>

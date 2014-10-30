@@ -3,17 +3,29 @@ require 'nokogiri'
 require 'open-uri'
 require 'json'
 class RunningsController < ApplicationController
+  def mypage
+    @user = current_user
 
+  end
   def index
     @insta_thumb = Array.new
     @insta_link = Array.new
-    doc = JSON.parse(open("https://api.instagram.com/v1/tags/giverunners/media/recent?count=10&access_token=265871089.0b74ed2.ea2046cafa45421b9b65426b7bc1b76d").read)["data"]
-
-    0.upto(9) do |x|
-      doc_now = doc[x]
-     @insta_thumb << doc_now["images"]["low_resolution"]["url"]
-     @insta_link << doc[x]["link"]
+    doc = Array.new
+    doc << JSON.parse(open("https://api.instagram.com/v1/tags/giverunners/media/recent?count=5&access_token=265871089.0b74ed2.ea2046cafa45421b9b65426b7bc1b76d").read)["data"]
+    doc << JSON.parse(open("https://api.instagram.com/v1/tags/giverunner/media/recent?count=5&access_token=265871089.0b74ed2.ea2046cafa45421b9b65426b7bc1b76d").read)["data"]
+    doc << JSON.parse(open("https://api.instagram.com/v1/tags/%EA%B8%B0%EB%B6%80%EB%9F%AC%EB%84%88/media/recent?count=5&access_token=265871089.0b74ed2.ea2046cafa45421b9b65426b7bc1b76d").read)["data"]
+    doc << JSON.parse(open("https://api.instagram.com/v1/tags/%EA%B8%B0%EB%B6%80%EB%9F%AC%EB%84%88%EC%A6%88/media/recent?count=5&access_token=265871089.0b74ed2.ea2046cafa45421b9b65426b7bc1b76d").read)["data"]
+    doc.each do |docc|
+      0.upto(4) do |x|
+        doc_now = docc[x]
+        if doc_now != nil
+         @insta_thumb << doc_now["images"]["low_resolution"]["url"]
+         @insta_link << docc[x]["link"]
+        end
+      end
     end
+    @insta_thumb.uniq!
+    @insta_link.uniq!
 
     @fb_thumb = Array.new
     @fb_link = Array.new

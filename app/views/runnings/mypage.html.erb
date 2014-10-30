@@ -1,0 +1,39 @@
+
+  <div class="offset2"></div>
+    <div class="light-wrapper">
+      <div class="container inner">
+        <figure class="icon-overlay">
+          <img src="https://graph.facebook.com/v2.1/<%=current_user.identities.first.uid%>/picture?type=large" style="border-radius:50%; margin: 0 auto;">
+        </figure>
+        <br>
+        <h1 class="intro text-center"><%=current_user.name%>님, 캠페인에 동참해주셔서 감사합니다!</h1>
+        <br>
+
+       
+        <div class="form-container">
+          <form action="/update_profile" method = "post" >
+            <input type="hidden" value ="<%= form_authenticity_token %>" name= "authenticity_token">
+            <fieldset>
+              <h3 class="section-title">
+                사시는 지역
+              </h3>
+              <input type="text" name="user[hometown]" class='text-input defaultText' value="<%=@user.hometown%>">
+              <h3 class="section-title">
+                달린 거리(단위: KM, 숫자만 입력)
+              </h3>
+              <input type="text" name="user[distance]" class='text-input defaultText' value="<%=@user.distance%>">
+              <h3 class="section-title">
+                1km당 기부예정금액(단위:원, 숫자만 입력)
+              </h3>
+              <input type="text" name="user[amount_per]" class='text-input defaultText' value="<%=@user.amount_per%>">
+              <h3 class="section-title">
+                다짐 한마디
+              </h3>
+                <textarea name="user[pledge]" class="text-area required" placeholder="기부러너에 참여하게 된 동기, 포부 등을 자유롭게 써주세요!"><%=@user.pledge%></textarea></li>
+                  <input type="submit" value="내 정보 저장" class="btn btn-submit bm0">
+                  
+            </fildset>
+          </form>
+        </div>
+      </div>
+    </div>

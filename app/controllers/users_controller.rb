@@ -10,7 +10,10 @@ class UsersController < ApplicationController
   def edit
     # authorize! :update, @user
   end
-
+  def update_profile
+    current_user.update(user_params)
+    redirect_to :controller => "runnings", :action => "mypage"
+  end
   # PATCH/PUT /users/:id.:format
   def update
     # authorize! :update, @user
@@ -55,7 +58,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      accessible = [ :name, :email ] # extend with your own params
+      accessible = [ :name, :email, :hometown, :distance, :amount_per, :pledge ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end

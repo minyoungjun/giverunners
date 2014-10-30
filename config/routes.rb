@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root 'runnings#index'
   get '/runnings/index'
   get '/runnings/member'
+  get '/runnings/mypage'
+  post '/update_profile' => "users#update_profile"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

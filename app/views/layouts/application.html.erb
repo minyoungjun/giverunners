@@ -24,6 +24,14 @@
 <link href="/style/type/budicons.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application'%>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=898299920181621&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
   <%= csrf_meta_tags %>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -36,14 +44,16 @@
     <div class="navbar default centered">
       <div class="navbar-header">
         <div class="container basic-wrapper"> <a class="btn responsive-menu pull-right" data-toggle="collapse" data-target=".navbar-collapse"><i></i></a>
-          <div class="navbar-brand text-center"><a href="index.html"><img src="style/images/logo.png" alt="" data-src="/images/logo.png" data-ret="/images/logo.png" class="retina" /></a></div>
+          <div class="navbar-brand text-center"><a href="/"><img src="/style/images/logo.png" alt="" data-src="/images/logo.png" data-ret="/images/logo.png" class="retina" /></a></div>
         </div>
         <!--/.container -->
         <nav class="collapse navbar-collapse text-center">
           <ul class="nav navbar-nav">
             <li><a href="/" class="dropdown-toggle js-activated">Home</a>
             </li>
+            <%#
             <li><a href="about.html">About Us</a></li>
+            %>
             <li class="dropdown"><a href="#" class="dropdown-toggle js-activated">Our SNS</a>
               <ul class="dropdown-menu">
                 <li><a href="https://www.facebook.com/groups/sportscharitydream/">FACEBOOK</a></li>
@@ -52,8 +62,9 @@
                 <li><a href="http://everunner.com">NAVER BLOG</a></li>
               </ul>
             </li>
-            <li><a href="/runnings/member" class="dropdown-toggle js-activated">members</a>
+            <li><a href="/runnings/member">members</a>
             </li>
+            <%#
             <li><a href="services.html">Services</a></li>
             <li class="dropdown"><a href="#" class="dropdown-toggle js-activated">Features</a>
               <ul class="dropdown-menu">
@@ -73,7 +84,14 @@
                 <li><a href="fontello.html">Font Icons - Fontello</a></li>
               </ul>
             </li>
+            %>
+            <%if user_signed_in? %>
+               <li><a href="/runnings/mypage">mypage</a></li>
+               <li><a href="<%=destroy_user_session_path%>">logout</a></li>
+            <%else%>
+            <li><a href="<%=user_omniauth_authorize_path(:facebook)%>">logIN</a></li>
             <li><a href="<%=user_omniauth_authorize_path(:facebook)%>">JOIN</a></li>
+            <%end%>
           </ul>
         </nav>
       </div>
@@ -87,7 +105,7 @@
     <div class="container inner">
       <div class="thin text-center">
         <h3 class="section-title text-center">Get in Touch with Us</h3>
-        <p>Maecenas faucibus molli interdum. Cras mattis consectetur purus sitor amet sed donec malesuada ullamcorper odio. Curabitur blandit tempus porttitor vollisky inceptos mollisestor.</p>
+        <p>기부러너즈는 언제나 열려 있습니다. 어떤 의견이든 감사히 듣겠습니다!</p>
         <div class="divide20"></div>
         <ul class="social">
           <li><a href="http://everunner.com"><i class="icon-s-rss"></i></a></li>
@@ -96,7 +114,7 @@
           <li><a href="http://instagram.com/seunghunkim"><i class="icon-s-instagram"></i></a></li>
         </ul>
         <div class="divide40"></div>
-        <div class="contact-info"> <span> Moonshine St. 14/05 Light City </span> <span>+00 (123) 456 78 90 </span> <span> <a href="first.last@email.com">bigtory.kim@gmail.com </a></span> </div>
+        <div class="contact-info"> <span> 왕십리역과 마장역 사이의 승훈이 집 </span> <span> <a href="first.last@email.com">bigtory.kim@gmail.com </a></span> </div>
         <!-- .contact-info --> 
         
       </div>
