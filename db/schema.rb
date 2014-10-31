@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(version: 20141030052946) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
+  create_table "models", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "photos", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"

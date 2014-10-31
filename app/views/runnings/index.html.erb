@@ -6,7 +6,7 @@
       <h1 class="intro text-center">기부러너즈는 누구나 참여할 수 있는 캠페인입니다.</h1>
       <p class="lead main text-center">우리는 스포츠와 기부를 연결하는 문화를 만들어갑니다.</p>
       <h3 class="section-title text-center">Let's make something great together</h3>
-      <div class="text-center"/> <a href="<%=user_omniauth_authorize_path(:facebook)%>" class="btn btn-large fixed-width">캠페인 참여</a> <a href="#" onclick="javascript:alert('아직 기부하기 기능은 개발 중입니다. 주변에 있는 후원 단체에 기부해주시면 감사하겠습니다.');" class="btn btn-large btn-maroon fixed-width">기부하기</a> </div>
+      <div class="text-center"/> <a href="<%=user_omniauth_authorize_path(:facebook)%>" class="btn btn-large fixed-width">캠페인 참여</a> <a href="/gives/campaigns" class="btn btn-large btn-maroon fixed-width">기부하기</a> </div>
       <div class="text-center" style="margin-top: 27px;">
         <div class="fb-like" data-href="https://facebook.com/runningcamel" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
     </div>
@@ -19,11 +19,11 @@
 
         <%User.all.shuffle[0..19].each do |user|%>
         <div class="item grid-sizer web" style="background:url('https://graph.facebook.com/v2.1/<%=user.identities.first.uid%>/picture?type=large');background-size: 100%;background-position: center; ">
-          <figure><a href="https://www.facebook.com/<%=user.identities.first.uid%>">
+          <figure><a href="https://www.facebook.com/<%=user.identities.first.uid%>" style="color:white;">
             <div class="text-overlay">
-              <div class="info"><span><%=user.name%>(<%=user.hometown%>)-<%=user.pledge%></span></div>
+              <div class="info"><%=user.name%><%if user.hometown != nil%>(<%=user.hometown%>)<%end%><%if user.pledge != nil%><br><%=user.pledge%><%end%></div>
             </div>
-            <img src="/style/images/art/pm1.jpg" alt="" style="opacity: 0;filter: alpha(opacity=0); "/> </a></figure>
+            <img src="/style/images/art/pm2.jpg" alt="" style="opacity: 0;filter: alpha(opacity=0);"/></a></figure>
         </div>
       <%end%>
 
@@ -112,50 +112,17 @@
 
 <div class="light-wrapper">
   <div class="container inner">
-    <h3 class="section-title">Giverunners Recent Posting</h3>
+    <h3 class="section-title">후원 대상 기관</h3>
     <div class="owl-blog">
-      <div class="post">
-        <figure class="icon-overlay"><a href="blog-post.html"><img src="style/images/art/gb1.jpg" alt="" /></a></figure>
-        <div class="post-content">
-          <h3 class="post-title"><a href="blog-post.html">Adipiscing Mollis Inceptos</a></h3>
-          <div class="meta"><span class="date">13 Nov, 2012</span> <span class="comments"><a href="#">3 Comments</a></span></div>
+      <% Campaign.all.shuffle.each do |campaign|%>
+        <div class="post">
+          <figure class="icon-overlay"><a href="<%=campaign.site_url%>"><img src="<%=campaign.logo.url(:medium)%>"/></a></figure>
+          <div class="post-content">
+            <h3 class="post-title"><a href="<%=campaign.site_url%>"><%=campaign.title%></a></h3>
+            <div class="meta"><span class="date"><%=campaign.category%></span> <span class="comments"><a href="#">0 followers</a></span></div>
+          </div>
         </div>
-      </div>
-      <div class="post">
-        <figure class="icon-overlay"><a href="blog-post.html"><img src="style/images/art/gb2.jpg" alt="" /></a></figure>
-        <div class="post-content">
-          <h3 class="post-title"><a href="blog-post.html">Ridiculus Ultricies Pellentesque</a></h3>
-          <div class="meta"><span class="date">02 Jan, 2013</span> <span class="comments"><a href="#">5 Comments</a></span></div>
-        </div>
-      </div>
-      <div class="post">
-        <figure class="icon-overlay"><a href="blog-post.html"><img src="style/images/art/gb3.jpg" alt="" /></a></figure>
-        <div class="post-content">
-          <h3 class="post-title"><a href="blog-post.html">Tristique Purus Pharetra</a></h3>
-          <div class="meta"><span class="date">14 Mar, 2013</span> <span class="comments"><a href="#">2 Comments</a></span></div>
-        </div>
-      </div>
-      <div class="post">
-        <figure class="icon-overlay"><a href="blog-post.html"><img src="style/images/art/gb4.jpg" alt="" /></a></figure>
-        <div class="post-content">
-          <h3 class="post-title"><a href="blog-post.html">Inceptos Porta Nibh</a></h3>
-          <div class="meta"><span class="date">23 Apr, 2013</span> <span class="comments"><a href="#">7 Comments</a></span></div>
-        </div>
-      </div>
-      <div class="post">
-        <figure class="icon-overlay"><a href="blog-post.html"><img src="style/images/art/gb5.jpg" alt="" /></a></figure>
-        <div class="post-content">
-          <h3 class="post-title"><a href="blog-post.html">Dapibus Amet Dolor</a></h3>
-          <div class="meta"><span class="date">14 May, 2013</span> <span class="comments"><a href="#">2 Comments</a></span></div>
-        </div>
-      </div>
-      <div class="post">
-        <figure class="icon-overlay"><a href="blog-post.html"><img src="style/images/art/gb6.jpg" alt="" /></a></figure>
-        <div class="post-content">
-          <h3 class="post-title"><a href="blog-post.html">Adipiscing Consectetur Cursus</a></h3>
-          <div class="meta"><span class="date">18 Aug, 2013</span> <span class="comments"><a href="#">7 Comments</a></span></div>
-        </div>
-      </div>
+      <%end%>
     </div>
   </div>
 </div> 
