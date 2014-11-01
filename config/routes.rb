@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   get '/admin' => "admin#campaigns"
   get '/gives/campaigns'
   get '/gives/create'
+  get '/gives/follow/:id' => "gives#follow"
+  post '/gives/following'
   post '/gives/create_campaign'
+  get '/admin/update/:id' => 'admin#update'
+  post '/admin/update_campaign'
   get '/admin/authorize/:id' => "admin#authorize"
   get '/admin/delete/:id' => "admin#delete"
   post '/update_profile' => "users#update_profile"

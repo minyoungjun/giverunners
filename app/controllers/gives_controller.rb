@@ -1,8 +1,24 @@
 class GivesController < ApplicationController
+
+  before_filter :is_login, :except => [:campaigns]
+
+  def following
+    fundraiser = Fundraiser.new
+    fundraiser.user_id = current_user.id
+    fundraiser.campaign_id = params[:campaign]
+    fundraiser.pledge = params[:pledge]
+    fundraiser.save
+    redirect_to :action => "campaigns"
+  end
+
+  def follow
+    @campaign = Campaign.find(params[:id])
+  end
   def campaigns
     @campaigns = Campaign.where(:authorized => true)
 
   end
+
   def create_campaign
 
     campaign = Campaign.new

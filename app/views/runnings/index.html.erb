@@ -114,12 +114,12 @@
   <div class="container inner">
     <h3 class="section-title">후원 대상 기관</h3>
     <div class="owl-blog">
-      <% Campaign.all.shuffle.each do |campaign|%>
+      <% Campaign.where(:authorized => true).shuffle.each do |campaign|%>
         <div class="post">
           <figure class="icon-overlay"><a href="<%=campaign.site_url%>"><img src="<%=campaign.logo.url(:medium)%>"/></a></figure>
           <div class="post-content">
             <h3 class="post-title"><a href="<%=campaign.site_url%>"><%=campaign.title%></a></h3>
-            <div class="meta"><span class="date"><%=campaign.category%></span> <span class="comments"><a href="#">0 followers</a></span></div>
+            <div class="meta"><span class="date"><%=campaign.category%></span> <span class="comments"><a href="#"><%=campaign.fundraisers.count%> followers</a></span></div>
           </div>
         </div>
       <%end%>

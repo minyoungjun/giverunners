@@ -21,9 +21,29 @@
               <a href="<%=campaign.site_url%>">
                 <h3 class="post-title"><%=campaign.title%><span class="meta"><%=campaign.category%></span></h3>
               </a>
-              <p><%=campaign.content%></p>
-              <ul class="social">
-                <li><a href="<%=campaign.facebook_url%>"><i class="icon-s-facebook"></i></a></li>
+              <p><%=campaign.content%><a href="<%=campaign.facebook_url%>"><i class="icon-s-facebook" style="color:#3b5998;"></i></a></p>
+                <% fundraisers_count = campaign.fundraisers.count%>
+                <%if fundraisers_count != 0%>
+                  <a href="javascript:$('#followers_<%=campaign.id%>').slideToggle(500);"><i class="icon-comment-1"></i><%=fundraisers_count%> comments from followers..</a>
+                  <div id="followers_<%=campaign.id%>" style="display:none;">
+                    <table>
+                    <%campaign.fundraisers.shuffle.each do |fundraiser|%>
+                      <tr>
+                        <td style="vertical-align:top;"><a href="https://www.facebook.com/<%=fundraiser.user.identities.first.uid%>"><img src="https://graph.facebook.com/v2.1/<%=fundraiser.user.identities.first.uid%>/picture?type=square" /></a>
+                        </td>
+                        <td>
+                          <p><strong><%=fundraiser.user.name%>:</strong> <%=fundraiser.pledge%></p>
+                        </td>
+                       </tr>
+                    <%end%>
+                    </table>
+                  </div>
+                  <br>
+                <%end%>
+               <%if !(user_signed_in?) || current_user.fundraisers.where(:campaign_id => campaign.id).count < 1%>
+
+                 <a href="/gives/follow/<%=campaign.id%>"><i class="icon-heart-1">Follow it</i></a>
+               <%end%>
               </ul>
             </div>
           </div>
