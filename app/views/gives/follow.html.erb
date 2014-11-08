@@ -1,0 +1,26 @@
+  <div class="offset2"></div>
+    <div class="light-wrapper">
+      <div class="container inner">
+        <figure class="icon-overlay">
+          <img src="https://graph.facebook.com/v2.1/<%=current_user.identities.first.uid%>/picture?type=large" style="border-radius:50%; margin: 0 auto;">
+        </figure>
+        <br>
+        <h1 class="intro text-center"><%=current_user.name%>님, 아래 양식을 작성해주시면 <%=@campaign.title%> 팔로잉이 완료됩니다.</h1>
+        <br>
+       
+        <div class="form-container">
+          <form action="/gives/following" method = "post" >
+            <input type="hidden" value ="<%= form_authenticity_token %>" name= "authenticity_token">
+            <input type="hidden" value="<%=@campaign.id%>" name="campaign">
+            <fieldset>
+              <h3 class="section-title">
+                <%=@campaign.title%>에게 응원 한마디 남겨주세요. 혹시 <%=@campaign.title%>에 기부를 하실 예정이라면 어떤 활동을 하시고 어떻게 기부 하실 건지도 써주세요^^
+              </h3>
+                <textarea name="pledge" class="text-area required" placeholder="저는 <%=@campaign.title%>을 위해 ~~를 하고 ~~를 기부하겠습니다."></textarea></li>
+                  <input type="submit" value="팔로잉 저장" class="btn btn-submit bm0">
+                  
+            </fildset>
+          </form>
+        </div>
+      </div>
+    </div>

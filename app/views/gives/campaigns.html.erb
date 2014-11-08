@@ -24,7 +24,7 @@
               <p><%=campaign.content%><a href="<%=campaign.facebook_url%>"><i class="icon-s-facebook" style="color:#3b5998;"></i></a></p>
                 <% fundraisers_count = campaign.fundraisers.count%>
                 <%if fundraisers_count != 0%>
-                  <a href="javascript:$('#followers_<%=campaign.id%>').slideToggle(500);"><i class="icon-comment-1"></i><%=fundraisers_count%> comments from followers..</a>
+                  <a href="javascript:$('#followers_<%=campaign.id%>').slideToggle(500);"><i class="icon-comment-1"></i> <%=fundraisers_count%> comments from followers..</a>
                   <div id="followers_<%=campaign.id%>" style="display:none;">
                     <table>
                     <%campaign.fundraisers.shuffle.each do |fundraiser|%>

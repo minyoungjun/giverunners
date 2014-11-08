@@ -1,0 +1,41 @@
+  <div class="offset2"></div>
+    <div class="light-wrapper">
+      <div class="container inner">
+
+        <h1>캠페인 수정하기</h1>      
+        <div class="form-container">
+          <form action="/admin/update_campaign" method = "post" enctype="multipart/form-data" >
+            <input type="hidden" value ="<%= form_authenticity_token %>" name= "authenticity_token">
+            <input type="hidden" value="<%=@campaign.id%>" name="id">
+            <fieldset>
+              <h3 class="section-title">
+                단체명
+              </h3>
+              <input type="text" name="title" class='text-input defaultText' value="<%=@campaign.title%>">
+
+              <h3 class="section-title">
+                대표 이미지
+              </h3>
+              <input type="file" name="campaign[logo]" >
+  <br>
+              <h3 class="section-title">
+                단체종류              
+              </h3>
+              <input type="text" name="category" class='text-input defaultText'value="<%=@campaign.category%>" >
+              <h3 class="section-title">
+                사이트 주소              </h3>
+              <input type="text" name="site_url" class='text-input defaultText'value="<%=@campaign.site_url%>" >
+              <h3 class="section-title">
+                페이스북 주소</h3>
+              <input type="text" name="facebook_url" class='text-input defaultText' value="<%=@campaign.facebook_url%>">
+              <h3 class="section-title">
+                단체설명
+              </h3>
+                <textarea name="content" class="text-area required" ><%=@campaign.content%></textarea></li>
+                  <input type="submit" value="캠페인 수정" class="btn btn-submit bm0">
+                  
+            </fildset>
+          </form>
+        </div>
+      </div>
+    </div>

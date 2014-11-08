@@ -31,9 +31,7 @@ end
     campaign.content = params[:content]
     campaign.save
 
-    if params["campaign[logo]"] != nil
-      campaign.logo.destroy
-      campaign.logo.clear
+    if params[:campaign] != nil
       campaign.update(campaign_params)
     end
     redirect_to :action => "campaigns"
