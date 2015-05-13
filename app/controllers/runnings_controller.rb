@@ -34,14 +34,16 @@ class RunningsController < ApplicationController
     @fb_time = Array.new
     @fb_name = Array.new
 
-    fb_doc = JSON.parse(open("https://graph.facebook.com/v2.1/877256565638278/feed?limit=4&access_token=" + Grouptoken.last.token).read)["data"]
+    fb_doc = JSON.parse(open("https://graph.facebook.com/v2.1/877256565638278/feed?limit=4&" + Grouptoken.last.token).read)["data"]
     0.upto(3) do |x|
       fb_doc_now = fb_doc[x]
       @fb_name << fb_doc_now["from"]
       @fb_time << Time.parse(fb_doc_now["created_time"]).to_formatted_s(:short)
       @fb_thumb << fb_doc_now["picture"]
       @fb_link << fb_doc_now["actions"][0]["link"]
-      @fb_text << fb_doc_now["message"].gsub("\n","")
+      if fb_doc_now["message"] != nil
+        @fb_text << fb_doc_now["message"].gsub("\n","")
+      end
       if fb_doc_now["comments"] != nil
         @fb_comments << fb_doc_now["comments"].count
       else
@@ -49,5 +51,9 @@ class RunningsController < ApplicationController
       end
 
     end
+    gro = Grouptoken.new
+    gro.token = open("https://graph.facebook.com/oauth/access_token?client_id=652492134825256&client_secret=c523ca9c897888e5298c6eb04b3899c9&grant_type=fb_exchange_token&fb_exchange_token=" + Grouptoken.last.token[13..-1]).read.to_s
+    gro.save
+
   end
 end
